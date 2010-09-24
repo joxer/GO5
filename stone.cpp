@@ -5,9 +5,8 @@ void Stone::operator()(LowLevelBoard* bb,Action& aa, History&,     std::vector<S
   
   //see if the position is occupied
 
-  if(bb->getStone(aa.getX(),aa.getY()) == aa.getColor()){
-    
-    std::cout << "fail" << std::endl;
+  if(bb->getStone(aa.getX(),aa.getY()) != 0){
+    throw StoneException(aa.getX(),aa.getY());
   }
 }
 #endif

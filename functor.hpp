@@ -1,5 +1,6 @@
 #include "board.hpp"
 #include "action.hpp"
+#include "exception.hpp"
 #include <list>
 #ifndef FUNCTOR_HPP
 #define FUNCTOR_HPP
