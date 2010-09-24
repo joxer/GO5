@@ -5,12 +5,9 @@ int main(){
   
   Board b;
   try{
-    b.putStone(0,1,1);
-    b.putStone(0,2,2);
-    b.putStone(1,1,2);
-    b.putStone(1,0,1);
-    b.putStone(0,0,2);
     b.putStone(0,0,1);
+    b.putStone(0,1,2);
+    b.putStone(1,0,2);
     b.printBoard();
   }catch(StoneException e){
 

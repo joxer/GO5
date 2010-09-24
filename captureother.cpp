@@ -18,7 +18,7 @@ void CaptureOther::operator()(LowLevelBoard* bb,Action& aa, History&,     std::v
   
   for(int i = 0; i < snakes->size();i++){
     if((snakes)->at(i).getLiberty().size() == 1){
-      if(aa.getX() == (snakes)->at(i).getLiberty()[0].getX() && aa.getY() == (snakes)->at(i).getLiberty()[0].getY())
+      if(aa.getX() == snakes->at(i).getLiberty()[0].getX() && aa.getY() == snakes->at(i).getLiberty()[0].getY())
 	//verify if the only liberty place on the stone to place
 	for(int j = 0; j < snakes->at(i).getOccupies().size();j++){
 
