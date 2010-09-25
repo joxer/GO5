@@ -1,14 +1,14 @@
 #include "functor.hpp"
 
 
-void VerifyBoard::operator()(LowLevelBoard* bb, Action& aa, History& hh, std::vector < Snake > *snakes) const{
+void VerifyBoard::operator()(GameWrapper* gg) const{
 #ifdef DEBUG
   std::cout << "Verifing board"<< std::endl;
 #endif
-  int **tmp = bb->getBoard();
+  int **tmp = gg->board->getBoard();
   int lib = 0;
   //clear the snakes history
-  snakes->clear();
+  gg->snakes->clear();
 
   /*see each groups of stones
 
@@ -109,7 +109,7 @@ void VerifyBoard::operator()(LowLevelBoard* bb, Action& aa, History& hh, std::ve
 	  
 	}
       
-      snakes->push_back(Snake(total_points,liberties));
+	gg->snakes->push_back(Snake(total_points,liberties));
 #ifdef DEBUG
       std::cout << "liberties = " << lib << std::endl;
 #endif

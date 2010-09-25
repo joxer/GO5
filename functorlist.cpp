@@ -7,9 +7,9 @@ void FunctorList::setNext(Functor* next){
 Functor* FunctorList::getFunctor() const{
   return *it;
 }
-void FunctorList::apply_list(LowLevelBoard* bb, Action& aa, History& hh,  std::vector < Snake > *snakes){
+void FunctorList::apply_list(GameWrapper *gg){
   for(it = list.begin();it != list.end(); ++it)
-    (*(*it))(bb, aa, hh, snakes);
+    (*(*it))(gg);
 }
 
 FunctorList::~FunctorList(){

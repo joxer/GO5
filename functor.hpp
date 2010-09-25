@@ -1,6 +1,7 @@
 #include "board.hpp"
 #include "action.hpp"
 #include "exception.hpp"
+#include "utils.hpp"
 #include <list>
 #ifndef FUNCTOR_HPP
 #define FUNCTOR_HPP
@@ -23,7 +24,7 @@ It's composed of 5 action
 
 class Functor{
   public:
-    virtual void operator()(LowLevelBoard*,Action&, History&, std::vector < Snake >*) const = 0;
+    virtual void operator()(GameWrapper*) const = 0;
     virtual ~Functor(){}
   };
   
@@ -35,34 +36,34 @@ class Functor{
     virtual ~FunctorList();
     virtual void setNext(Functor* next);
     virtual Functor* getFunctor() const;
-    virtual void apply_list(LowLevelBoard*,Action&,History&,std::vector < Snake > *);
+    virtual void apply_list(GameWrapper*);
   };
 
 class Stone: virtual public Functor{
 public:
-  void operator()(LowLevelBoard*,Action&,History&, std::vector < Snake > *) const;
+  void operator()(GameWrapper*) const;
   
 };
 
 class Ko: virtual public Functor{
 public:
-  void operator()(LowLevelBoard*,Action&, History&, std::vector < Snake > *) const;
+  void operator()(GameWrapper*) const;
   
 };
 
 class PutStone: virtual public Functor{
 public:
-  void operator()(LowLevelBoard*, Action&, History&, std::vector < Snake > *) const;
+  void operator()(GameWrapper*) const;
 };
 
 class VerifyBoard: virtual public Functor{
 public:
-  void operator()(LowLevelBoard*, Action&, History&, std::vector < Snake > *) const;
+  void operator()(GameWrapper*) const;
 };
 
 class CaptureOther: virtual public Functor{
 public:
-  void operator()(LowLevelBoard*, Action&, History&, std::vector < Snake > *) const;
+  void operator()(GameWrapper*) const;
 };
 
 

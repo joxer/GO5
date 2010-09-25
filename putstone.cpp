@@ -1,11 +1,15 @@
 #include "functor.hpp"
 #ifndef PUTSTONE_CPP
 #define PUTSTONE_CPP
-void PutStone::operator()(LowLevelBoard* bb,Action& aa, History&, std::vector < Snake > *snakes) const{
+void PutStone::operator()(GameWrapper* gg) const{
   
   // simply put the stone
+  
+    LowLevelBoard* tmp_b = gg->board;
+    Action* tmp_a = gg->action;
 
-  bb->putStone(aa.getX(),aa.getY(),aa.getColor());
+    
+    tmp_b->putStone(tmp_a->getX(),tmp_a->getY(),tmp_a->getColor());
  
   
 }

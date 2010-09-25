@@ -13,6 +13,7 @@ Board rappresentantion
 #include "lowlevelboard.hpp"
 #include "history.hpp"
 #include "functor.hpp"
+#include "utils.hpp"
 /*
 
 Higher rappresentation of the board
@@ -40,39 +41,71 @@ public:
   void putStone(int x, int y, int color){
     
     //TODO: verify the allocation
-
-    Stone *ss = new Stone;
-    PutStone *mm = new PutStone;
-    VerifyBoard *vv = new VerifyBoard;
-    History hist;
-    FunctorList ff;
-    Action ac(x,y,color);
-    CaptureOther *cc = new CaptureOther;
    
+    Stone *ss = new Stone;
+    guard<Stone> Stone_guard(ss);
+    PutStone *ps = new PutStone;
+    guard<PutStone> PutStone_guard(ps);
+    CaptureOther *co = new CaptureOther;
+    guard<CaptureOther> CaptureOther_guard(co);
+    VerifyBoard *vb = new VerifyBoard;
+    guard<VerifyBoard> VerifyBoard_guard(vb);
+
+    Stone_guard.release();
+    PutStone_guard.release();
+    CaptureOther_guard.release();
+    VerifyBoard_guard.release();
+    
+
+    FunctorList ff;
+    
+    Action ac(x,y,color);
     ff.setNext(ss);
-    ff.setNext(mm);
-    ff.setNext(cc);
-    ff.setNext(vv);
-    ff.apply_list(board, ac, hist, &snakes);
+    ff.setNext(ps);
+    ff.setNext(co);
+    ff.setNext(vb);
+
+    GameWrapper gg;
+    gg.board = board;
+    gg.action = &ac;
+    gg.history = hh;
+    gg.snakes=&snakes;
+
+    ff.apply_list(&gg);
    
   }
 
   void putStone(Action &ac){
     //TODO: verify the allocation
-    Stone *ss = new Stone;
-    PutStone *mm = new PutStone;
-    CaptureOther *oo = new CaptureOther;
-    VerifyBoard *vv = new VerifyBoard;
-    CaptureOther *cc = new CaptureOther;
-    History hist;
 
-   
+    Stone *ss = new Stone;
+    guard<Stone> Stone_guard(ss);
+    PutStone *ps = new PutStone;
+    guard<PutStone> PutStone_guard(ps);
+    CaptureOther *co = new CaptureOther;
+    guard<CaptureOther> CaptureOther_guard(co);
+    VerifyBoard *vb = new VerifyBoard;
+    guard<VerifyBoard> VerifyBoard_guard(vb);
+
+    Stone_guard.release();
+    PutStone_guard.release();
+    CaptureOther_guard.release();
+    VerifyBoard_guard.release();
+
+
     FunctorList ff;
     ff.setNext(ss);
-    ff.setNext(mm);
-    ff.setNext(cc);
-    ff.setNext(vv);
-    ff.apply_list(board, ac, hist, &snakes);
+    ff.setNext(ps);
+    ff.setNext(co);
+    ff.setNext(vb);
+
+    GameWrapper gg;
+    gg.board = board;
+    gg.action = &ac;
+    gg.history = hh;
+    gg.snakes=&snakes;
+
+    ff.apply_list(&gg);
    
   }
 
