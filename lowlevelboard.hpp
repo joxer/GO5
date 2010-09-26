@@ -18,16 +18,20 @@ public:
 
     //alloc board
 
-    board = (int**)malloc(sizeof(int*)*9);
+    board = new int*[9];
     //empty board
     for(int i = 0; i < 9;i++)
-      board[i] = (int*)malloc(sizeof(int)*9);
+      board[i] = new int[9];
     for(int i= 0; i < 9;i++){
       for(int j=0 ; j < 9;j++)
 	board[i][j] = 0;
     }
   }
-
+  ~LowLevelBoard(){
+    for(int i = 0; i < 9;i++)
+      delete[] board[i];
+    delete[] board;
+  }
   void printRawBoard(){
 
     for(int i = 0; i < 9;i++){
@@ -74,6 +78,6 @@ public:
 
     return board;
   }
-
+  
 };
 #endif

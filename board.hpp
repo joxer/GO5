@@ -48,6 +48,8 @@ public:
     guard<PutStone> PutStone_guard(ps);
     CaptureOther *co = new CaptureOther;
     guard<CaptureOther> CaptureOther_guard(co);
+    Ko *ko = new Ko;
+    guard<Ko> Ko_guard(ko);
     VerifyBoard *vb = new VerifyBoard;
     guard<VerifyBoard> VerifyBoard_guard(vb);
 
@@ -55,12 +57,13 @@ public:
     PutStone_guard.release();
     CaptureOther_guard.release();
     VerifyBoard_guard.release();
-    
+    Ko_guard.release();
 
     FunctorList ff;
     
     Action ac(x,y,color);
     ff.setNext(ss);
+    ff.setNext(ko);
     ff.setNext(ps);
     ff.setNext(co);
     ff.setNext(vb);
@@ -82,6 +85,8 @@ public:
     guard<Stone> Stone_guard(ss);
     PutStone *ps = new PutStone;
     guard<PutStone> PutStone_guard(ps);
+    Ko *ko = new Ko;
+    guard<Ko> Ko_guard(ko);
     CaptureOther *co = new CaptureOther;
     guard<CaptureOther> CaptureOther_guard(co);
     VerifyBoard *vb = new VerifyBoard;
@@ -91,10 +96,11 @@ public:
     PutStone_guard.release();
     CaptureOther_guard.release();
     VerifyBoard_guard.release();
-
+    Ko_guard.release();
 
     FunctorList ff;
     ff.setNext(ss);
+    ff.setNext(ko);
     ff.setNext(ps);
     ff.setNext(co);
     ff.setNext(vb);

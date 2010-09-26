@@ -36,6 +36,14 @@ public:
   int getColor(){
     return color;
   }
+
+  bool operator==(Action* cc){
+
+    if(x == cc->getX() && y == cc->getY() && color == cc->getColor())
+      return true;
+    return false;
+  }
+
 };
 #endif
 
