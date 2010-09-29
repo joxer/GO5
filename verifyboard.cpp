@@ -65,7 +65,7 @@ void VerifyBoard::operator()(GameWrapper* gg) const{
 		liberties.push_back(Position(x-1,y,tmp[x-1][y]));
 	      }
 	    }
-	  if(x < 9)
+	  if(x < 8)
 	    if(tmp[x+1][y] == current_color){
 	      queue.push_back(Position(x+1,y, tmp[x+1][y]));
 	      total_points.push_back(Position(x+1,y, tmp[x+1][y]));
@@ -93,7 +93,7 @@ void VerifyBoard::operator()(GameWrapper* gg) const{
 	      }
 	    }
 	  
-	  if(x < 9)
+	  if(x < 8)
 	    if(tmp[x][y+1] == current_color){
 	      queue.push_back(Position(x,y+1, tmp[x][y+1]));
 	      total_points.push_back(Position(x,y+1, tmp[x][y+1]));

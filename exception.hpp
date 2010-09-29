@@ -25,4 +25,15 @@ public:
       return out.str().c_str();
   }
 };
+class KoException: public GoException{
+  
+public:
+  KoException() throw(){};
+  virtual ~KoException() throw(){};
+  virtual const char* what() const throw(){
+    return "ko rule";
+  }
+
+};
+
 #endif

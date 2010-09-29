@@ -27,98 +27,14 @@ class Board{
   LowLevelBoard *board;
   History *hh;
 public:
-  Board(){
+ 
+  Board();
+  ~Board();
+  void printBoard();
+  int getStone(int x,int y);
+  void finalScore();
+  void putStone(Action &ac);
+  void putStone(int x, int y, int color);
 
-    board = new LowLevelBoard(); 
-    hh = new History;
-  }
-  ~Board(){
-
-    delete(board);
-    delete(hh);
-  }
-
-  void putStone(int x, int y, int color){
-    
-    //TODO: verify the allocation
-   
-    Stone *ss = new Stone;
-    guard<Stone> Stone_guard(ss);
-    PutStone *ps = new PutStone;
-    guard<PutStone> PutStone_guard(ps);
-    CaptureOther *co = new CaptureOther;
-    guard<CaptureOther> CaptureOther_guard(co);
-    Ko *ko = new Ko;
-    guard<Ko> Ko_guard(ko);
-    VerifyBoard *vb = new VerifyBoard;
-    guard<VerifyBoard> VerifyBoard_guard(vb);
-
-    Stone_guard.release();
-    PutStone_guard.release();
-    CaptureOther_guard.release();
-    VerifyBoard_guard.release();
-    Ko_guard.release();
-
-    FunctorList ff;
-    
-    Action ac(x,y,color);
-    ff.setNext(ss);
-    ff.setNext(ko);
-    ff.setNext(ps);
-    ff.setNext(co);
-    ff.setNext(vb);
-
-    GameWrapper gg;
-    gg.board = board;
-    gg.action = &ac;
-    gg.history = hh;
-    gg.snakes=&snakes;
-
-    ff.apply_list(&gg);
-   
-  }
-
-  void putStone(Action &ac){
-    //TODO: verify the allocation
-
-    Stone *ss = new Stone;
-    guard<Stone> Stone_guard(ss);
-    PutStone *ps = new PutStone;
-    guard<PutStone> PutStone_guard(ps);
-    Ko *ko = new Ko;
-    guard<Ko> Ko_guard(ko);
-    CaptureOther *co = new CaptureOther;
-    guard<CaptureOther> CaptureOther_guard(co);
-    VerifyBoard *vb = new VerifyBoard;
-    guard<VerifyBoard> VerifyBoard_guard(vb);
-
-    Stone_guard.release();
-    PutStone_guard.release();
-    CaptureOther_guard.release();
-    VerifyBoard_guard.release();
-    Ko_guard.release();
-
-    FunctorList ff;
-    ff.setNext(ss);
-    ff.setNext(ko);
-    ff.setNext(ps);
-    ff.setNext(co);
-    ff.setNext(vb);
-
-    GameWrapper gg;
-    gg.board = board;
-    gg.action = &ac;
-    gg.history = hh;
-    gg.snakes=&snakes;
-
-    ff.apply_list(&gg);
-   
-  }
-
-
-  void printBoard(){
-
-    board->printBoard();
-  }
 };
 #endif
