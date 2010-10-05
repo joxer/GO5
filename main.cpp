@@ -8,7 +8,7 @@ int main(){
   Board b;
   try{
     srand(time(0));
-    for(int i = 0; i < 29;i++){
+    for(int i = 0; i <2;i++){
       int tmp1 = rand()%9;
       int tmp2 = rand()%9;
       int color = (tmp1*tmp2)%2 + 1;
@@ -20,9 +20,8 @@ int main(){
     }
 
     
-    b.putStone(1,2,2);
-    b.finalScore();
-    b.printBoard();
+    LowLevelBoard *tmp = b.getInfluenceMap();
+    tmp->printRawBoard();
   }catch(StoneException e){
 
     std::cout << e.what() << std::endl;

@@ -187,3 +187,73 @@ void Board::printBoard(){
   board->printBoard();
 }
 
+LowLevelBoard* Board::getInfluenceMap(){
+
+
+  LowLevelBoard* influence_board = new LowLevelBoard();
+  influence_board->copyBoard(board);
+  board->getBoard()[0][0] = 8;
+  /*
+  memcpy(influence_false_board->getBoard(), influence_board->getBoard(), sizeof(influence_board));
+  for(int i = 0; i <9;i++){
+    for(int j = 0; j < 9;j++){
+    
+      if(influence_board->getBoard()[i][j] == 1 || influence_board->getBoard()[i][j] == 2){
+
+	int amount;
+	if(influence_board->getBoard()[i][j] == 1){
+	  amount = 10;
+	}
+	else if(influence_board->getBoard()[i][j] == 2){
+	  amount = -10;
+	}
+	std::vector<Position> influence;
+	influence.push_back(Position(i,j,influence_board->getBoard()[i][j]));
+	while(influence.size() != 0){
+	
+	  int x = influence.front().getX();
+	  int y = influence.front().getY();
+	  if(influence_board->getBoard()[x][y] != 2 && influence_board->getBoard()[x][y] != 1)
+	    ;
+
+	  influence_false_board->getBoard()[x][y] = 128;
+	  influence.erase(influence.begin());
+	  if(x > 0)
+	    if(influence_board->getBoard()[x-1][y]== 0 && influence_false_board->getBoard()[x-1][y]!= 128){ 
+	      influence.push_back(Position(x-1,y, influence_board->getBoard()[x-1][y]));
+	    }
+	    else{
+	      
+	    }
+	  if(x < 8)
+	    if(influence_board->getBoard()[x+1][y] == 0  && influence_false_board->getBoard()[x+1][y] != 128){
+	      influence.push_back(Position(x+1,y, influence_board->getBoard()[x+1][y]));
+	      
+	    }
+	    else{
+	      
+	    }
+	  
+	  if(y > 0)
+	    if(influence_board->getBoard()[x][y-1] == 0 && influence_false_board->getBoard()[x][y-1] != 128){
+	      influence.push_back(Position(x,y-1, influence_board->getBoard()[x][y-1]));
+	    }
+	    else{
+	      
+	    }
+	  
+	  if(y < 8)
+	    if(influence_board->getBoard()[x][y+1] == 0 && influence_false_board->getBoard()[x][y+1] != 128){
+	      influence.push_back(Position(x,y+1, influence_board->getBoard()[x][y+1]));	      
+	    }
+	    else{
+	      
+	    }
+	}	
+      }
+      
+    }
+  }
+  */
+    return influence_board;
+}

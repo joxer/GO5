@@ -2,8 +2,8 @@
 #include <iostream>
 #include <sstream>
 
-#ifndef GOEXCEPTION
-#define GOEXCEPTION
+#ifndef EXCEPTION_HPP
+#define EXCEPTION_HPP
 class GoException: public std::exception{
 public:
   GoException() throw(){};

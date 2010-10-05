@@ -22,6 +22,6 @@ public:
   void putStone(int x, int y, int color);
   int getStone(int x, int y);
   int** getBoard();
-  
+  void copyBoard(LowLevelBoard*);
 };
 #endif
