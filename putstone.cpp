@@ -11,7 +11,6 @@ void PutStone::operator()(GameWrapper* gg) const{
     
     tmp_b->putStone(tmp_a->getX(),tmp_a->getY(),tmp_a->getColor());
     tmp_h->addAction(*tmp_a);
-  
 }
 
 #endif

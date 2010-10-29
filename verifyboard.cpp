@@ -93,7 +93,7 @@ void VerifyBoard::operator()(GameWrapper* gg) const{
 	      }
 	    }
 	  
-	  if(x < 8)
+	  if(y < 8)
 	    if(tmp[x][y+1] == current_color){
 	      queue.push_back(Position(x,y+1, tmp[x][y+1]));
 	      total_points.push_back(Position(x,y+1, tmp[x][y+1]));
@@ -120,10 +120,6 @@ void VerifyBoard::operator()(GameWrapper* gg) const{
 	}
       }
       
-    
-      
-      
-    
       for(int  i = 0; i < 9;i++)
 	for(int j = 0; j < 9;j++)
 	  if(tmp[i][j] == 3)

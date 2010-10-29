@@ -21,7 +21,7 @@ public:
   std::vector<Action> getActions();
   Action getLastAction();
   int size();
-
+  void removeLastAction();
 };
 
 #endif

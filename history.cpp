@@ -23,6 +23,11 @@ Action History::getLastAction(){
   return actions.back();
 }
 
+void History::removeLastAction(){
+
+  actions.erase(actions.end());
+}
+
 int History::size(){
 
   return actions.size();

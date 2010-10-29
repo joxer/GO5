@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #ifndef LOWLEVELBOARD_HPP
 #define LOWLEVELBOARD_HPP
 

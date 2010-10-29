@@ -1,6 +1,10 @@
+#include "board.hpp"
+#include "action.hpp"
+#include <vector>
 #ifndef  UTILS_HPP
 #define UTILS_HPP
-#include "action.hpp"
+
+
 template<class T> class guard{ 
   T* p;
 public:

@@ -52,6 +52,7 @@ void Board::putStone(int x, int y, int color){
    
 }
 
+
 void Board::putStone(Action &ac){
     //TODO: verify the allocation
 
@@ -169,12 +170,12 @@ void Board::finalScore(){
       }
       if(lib == 1){
 	
-	std::cout << "wii" << std::endl;
+	
       }
 
     }
-
-  }
+    
+}
 
 
 int Board::getStone(int x,int y){
@@ -192,68 +193,116 @@ LowLevelBoard* Board::getInfluenceMap(){
 
   LowLevelBoard* influence_board = new LowLevelBoard();
   influence_board->copyBoard(board);
-  board->getBoard()[0][0] = 8;
-  /*
-  memcpy(influence_false_board->getBoard(), influence_board->getBoard(), sizeof(influence_board));
+
+  int amount;
   for(int i = 0; i <9;i++){
     for(int j = 0; j < 9;j++){
-    
-      if(influence_board->getBoard()[i][j] == 1 || influence_board->getBoard()[i][j] == 2){
-
-	int amount;
-	if(influence_board->getBoard()[i][j] == 1){
+	if(influence_board->getBoard()[i][j] == 1 || influence_board->getBoard()[i][j] == 2){
+	if(influence_board->getBoard()[i][j] == 1)
 	  amount = 10;
+	else
+	  amount= -10;
+	for(int a = i+1, b = 8-i-1; a <= 8;a++){
+	  if(influence_board->getBoard()[a][j] == 1 ||influence_board->getBoard()[a][j] == 2)
+	    break;
+	  else
+	    influence_board->getBoard()[a][j] += amount*b--;
 	}
-	else if(influence_board->getBoard()[i][j] == 2){
-	  amount = -10;
-	}
-	std::vector<Position> influence;
-	influence.push_back(Position(i,j,influence_board->getBoard()[i][j]));
-	while(influence.size() != 0){
-	
-	  int x = influence.front().getX();
-	  int y = influence.front().getY();
-	  if(influence_board->getBoard()[x][y] != 2 && influence_board->getBoard()[x][y] != 1)
-	    ;
 
-	  influence_false_board->getBoard()[x][y] = 128;
-	  influence.erase(influence.begin());
-	  if(x > 0)
-	    if(influence_board->getBoard()[x-1][y]== 0 && influence_false_board->getBoard()[x-1][y]!= 128){ 
-	      influence.push_back(Position(x-1,y, influence_board->getBoard()[x-1][y]));
-	    }
-	    else{
-	      
-	    }
-	  if(x < 8)
-	    if(influence_board->getBoard()[x+1][y] == 0  && influence_false_board->getBoard()[x+1][y] != 128){
-	      influence.push_back(Position(x+1,y, influence_board->getBoard()[x+1][y]));
-	      
-	    }
-	    else{
-	      
-	    }
-	  
-	  if(y > 0)
-	    if(influence_board->getBoard()[x][y-1] == 0 && influence_false_board->getBoard()[x][y-1] != 128){
-	      influence.push_back(Position(x,y-1, influence_board->getBoard()[x][y-1]));
-	    }
-	    else{
-	      
-	    }
-	  
-	  if(y < 8)
-	    if(influence_board->getBoard()[x][y+1] == 0 && influence_false_board->getBoard()[x][y+1] != 128){
-	      influence.push_back(Position(x,y+1, influence_board->getBoard()[x][y+1]));	      
-	    }
-	    else{
-	      
-	    }
-	}	
-      }
-      
+	for(int a = i-1, b= i; a >= 0;a--){
+
+	  if(influence_board->getBoard()[a][j] == 1 ||influence_board->getBoard()[a][j] == 2)
+	    break;
+	  else
+	    influence_board->getBoard()[a][j] += amount*b--;
+	}
+	for(int a = j+1, b = 8-j; a <= 8;a++){
+	  if(influence_board->getBoard()[i][a] == 1 ||influence_board->getBoard()[i][a] == 2)
+	    break;
+	  else
+	    influence_board->getBoard()[i][a] += amount*b--;
+	}
+
+	for(int a = j-1, b= j; a >= 0;a--){
+
+	  if(influence_board->getBoard()[i][a] == 1 ||influence_board->getBoard()[i][a] == 2)
+	    break;
+	  else
+	    influence_board->getBoard()[i][a] += amount*b--;
+	}
+	/*	if(j/4 < 1){
+		
+	  for(int a = 4, k = j-1; k >= 0;k--){
+	    if(influence_board->getBoard()[i][k] == 1 ||influence_board->getBoard()[i][k] == 2)
+	      break;
+	    else
+	      influence_board->getBoard()[i][k] += amount*a--;
+	  }
+	  for(int a = 4,k = j+1; k <= (j+4);k++){
+	    if(influence_board->getBoard()[i][k] == 1 ||influence_board->getBoard()[i][k] == 2)
+	      break;
+	    else
+	      influence_board->getBoard()[i][k] += amount*a--;
+	  }
+	}
+	else{
+	  for(int a = 4,k = j-1; k >= (j-4);k--){
+	    if(influence_board->getBoard()[i][k] == 1 ||influence_board->getBoard()[i][k] == 2)
+	      break;
+	    else
+	      influence_board->getBoard()[i][k] += amount*a--;
+	  }
+	  for(int a = 4,k = j+1; k <= 8;k++){
+	    if(influence_board->getBoard()[i][k] == 1 ||influence_board->getBoard()[i][k] == 2)
+	      break;
+	    else
+	      influence_board->getBoard()[i][k] += amount*a--;
+	  }
+	}
+	if(i/4 < 1){
+
+	  for(int a = 4,k = i-1; k >= 0;k--){
+	    if(influence_board->getBoard()[k][j] == 1 ||influence_board->getBoard()[k][j] == 2)
+	      break;
+	    else
+	      influence_board->getBoard()[k][j] += amount*a--;
+	  }
+	  for(int a = 4,k = i+1; k <= (i+4);k++){
+	    if(influence_board->getBoard()[k][j] == 1 ||influence_board->getBoard()[k][j] == 2)
+	      break;
+	    else
+	      influence_board->getBoard()[k][j] += amount*a--;
+	  }
+	}
+	else{
+	  for(int a = 4,k = i-1; k >= (i-4);k--){
+	    if(influence_board->getBoard()[k][j] == 1 ||influence_board->getBoard()[k][j] == 2)
+	      break;
+	    else
+	      influence_board->getBoard()[k][j] += amount*a--;
+	  }
+	  for(int a = 4,k = i+1; k <= 8;k++){
+	    if(influence_board->getBoard()[k][j] == 1 ||influence_board->getBoard()[k][j] == 2)
+	      break;
+	    else
+	      influence_board->getBoard()[k][j] += amount*a--;
+	  }
+	  }
+	*/
+	}
+	
     }
   }
-  */
-    return influence_board;
+
+  return influence_board;
+
+}
+
+void Board::removeStone(int x,int y){
+  hh->removeLastAction();
+  board->getBoard()[x][y] = 0;
+}
+
+LowLevelBoard* Board::getLowLevelBoard(){
+  return board;
 }

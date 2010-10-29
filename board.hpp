@@ -39,6 +39,7 @@ public:
   LowLevelBoard* getInfluenceMap();
   void putStone(Action &ac);
   void putStone(int x, int y, int color);
-
+  void removeStone(int x,int y);
+  LowLevelBoard* getLowLevelBoard();
 };
 #endif

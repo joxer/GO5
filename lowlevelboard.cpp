@@ -23,7 +23,7 @@ void LowLevelBoard::printRawBoard(){
     for(int i = 0; i < 9;i++){
       for(int j = 0; j < 9;j++)
 	
-	std::cout << board[i][j] << " ";
+	std::cout << board[i][j] << "  ";
 
       std::cout << std::endl;
     }
@@ -44,6 +44,14 @@ void LowLevelBoard::printBoard(){
       else if(board[i][j] == 2){
 	
 	std::cout << "O " ;
+      }
+      else if(board[i][j] >= 10){
+	
+	std::cout << board[i][j]/10 << " " ;
+      }
+      else if(board[i][j] <= 10){
+	
+	std::cout << board[i][j]/(-10)  << " ";
       }
 
   
@@ -72,5 +80,4 @@ void LowLevelBoard::copyBoard(LowLevelBoard* ll){
   for(int i = 0; i < 9;i++)
     for(int j = 0; j < 9;j++)
       board[i][j] = ll->getBoard()[i][j];
-
 }
