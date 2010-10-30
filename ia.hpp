@@ -102,7 +102,94 @@ public:
     }
     //      return empty[i].first.getColor();
   }
+
+  
+  int generate_move2(Board& bb){
+    LowLevelBoard* tmp2 =  new LowLevelBoard();
+    tmp2->copyBoard(bb.getLowLevelBoard());
+    int** tmp = tmp2->getBoard();
+    for(int i = 0; i < 9;i++){
+      for(int j = 0; j < 9;j++){
+	
+	if(tmp[i][j] == 1 || tmp[i][j] == 2){
+#ifdef DEBUG
+	  std::cout << "new stone" << std::endl;
+	  std::cout << "x: " << i << " y: " << j<< std::endl;
+	  std::cout << "color: " << tmp[i][j] << std::endl;
+#endif
+	  Go_Analysis::under_attack_group(bb.getLowLevelBoard(), tmp[i][j],i,j);
+	  std::vector<Position> queue, liberties;
+
+	  int lib = 0;
+	  int x = i;
+	  int y = j;
+	  int mark_color, current_color,piece_color;
+	  if(tmp[x][y] == 1){
+	    current_color = 1;
+	    mark_color = 3;
+	    piece_color = 4;
+	  }
+	  else if(tmp[x][y] == 2){
+	    current_color = 2;
+	    mark_color = 5;
+	    piece_color = 6;
+	  }
+	  
+	  queue.push_back(Position(x,y, tmp[x][y]));
+
+	  while(queue.size() != 0){
+	    x = queue.front().getX();
+	    y = queue.front().getY();
+	    queue.erase(queue.begin());
+	    tmp[x][y] = mark_color ;
+#ifdef DEBUG
+	    std::cout << "queue size: "  <<queue.size() << std::endl;
+	    std::cout << "x: " << x << " y: " << y<< std::endl;
+#endif
+
+	    if(x > 0){
+	      std::cout << "x>0" << std::endl;
+#ifdef DEBUG
+	      if(tmp[x-1][y] == current_color){
+#endif
+		queue.push_back(Position(x-1,y,tmp[x-1][y]));
+		
+	      }
+	    }
+	    if(x < 8){
+
+	      if(tmp[x+1][y] == current_color){
+#ifdef DEBUG
+		std::cout << "x<8" << std::endl;
+#endif
+		queue.push_back(Position(x+1,y,tmp[x+1][y]));
+		
+	      }
+	    }
+	    if(y > 0)
+
+	      if(tmp[x][y-1] == current_color){
+#ifdef DEBUG
+		std::cout << "y>0"  << std::endl;	      
+#endif
+		queue.push_back(Position(x,y-1,tmp[x][y-1]));
+	      }
+	    
+	    if(y < 8)
+	   
+	      if(tmp[x][y+1] == current_color){
+#ifdef DEBUG
+		std::cout << "y<8"  << std::endl;
+#endif
+		queue.push_back(Position(x,y+1,tmp[x][y+1]));
+	      }
+	  }
+	}
+      }
+    }
+  }
+
   
 };
-
+  
 #endif

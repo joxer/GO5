@@ -24,8 +24,11 @@ int main(){
     b.getInfluenceMap()->printBoard();
   std::cout << std::endl;
   b.printBoard();
-  Go_Analysis::under_attack_group(b.getLowLevelBoard(), 1,1,1);
-    //  ia.generate_move(b,0);
+
+  ia.generate_move2(b);
+  
+  //  Go_Analysis::under_attack_group(b.getLowLevelBoard(), 1,1,1);
+  //  ia.generate_move(b,0);
   //  }
     
   /*
@@ -76,3 +79,4 @@ int main(){
 
   return 0;
 }
+

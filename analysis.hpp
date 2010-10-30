@@ -75,7 +75,7 @@ namespace Go_Analysis{
 	    }
 	  }
 	
-	if(x < 8)
+	if(y < 8)
 	  if(tmp[x][y+1] == current_color){
 	    queue.push_back(Position(x,y+1, tmp[x][y+1]));
 
@@ -111,14 +111,14 @@ namespace Go_Analysis{
   }
   
   
-  void under_attack_group(LowLevelBoard* map, int color,int i,int j){
+  std::vector< std::vector < Position > > under_attack_group(LowLevelBoard* map, int color,int i,int j){
     int opponent_color;
     if(color == 1)
       opponent_color = 2;
     else
       opponent_color = 1;
     std::vector <Position> libert = liberties_group(map, color,i,j);
-    std::vector <Position> under_attack, probable_move;
+    std::vector <Position> under_attack, probable_move,internal_point;
     std::vector<Position>::iterator it;
     int** tmp = map->getBoard();
     int cc;
@@ -144,19 +144,26 @@ namespace Go_Analysis{
 #ifdef DEBUG
 	std::cout << it->getX() << " " << it->getY() << std::endl;
 #endif
-	libert.erase(it);
+	internal_point.push_back(*it);
       }
       else if(cc == 2){
 #ifdef DEBUG
 	std::cout << it->getX() << " " << it->getY() << std::endl;
 #endif
 	under_attack.push_back(*it);
+
       }
-    }
-      
     }
 #ifdef DEBUG
     std::cout << libert.size() << std::endl;
+
+      std::cout << "end analysis" << std::endl;
 #endif
+
+      std::vector < std::vector < Position > > final_vector;
+      final_vector.push_back(under_attack);
+      final_vector.push_back(internal_point);
+      return final_vector;
   }
+
 };
