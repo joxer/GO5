@@ -10,8 +10,8 @@ Defines basic structures needed by the game to work
 
 
 
-#ifndef ACTION_HPP
-#define ACTION_HPP
+#ifndef GO_ACTION_HPP
+#define GO_ACTION_HPP
 
 class Action{
   // This Class enwrap the action to put a stone on the board
@@ -19,25 +19,25 @@ class Action{
   
   int x,y,color;
 public:
-  explicit Action(int xx, int yy, int ccolor);  
+  explicit Action(int, int, int);  
   int getX();
   int getY();
   int getColor();
-  bool operator==(Action* cc);
+  bool operator==(Action*);
 };
 #endif
 
-#ifndef POSITION_HPP
-#define POSITION_HPP
+#ifndef GO_POSITION_HPP
+#define GO_POSITION_HPP
 class Position: public Action{
   //Define the position on the board
 public:
-  explicit Position(int x, int y, int color);
+  explicit Position(int, int, int);
 };
 #endif
   
-#ifndef SNAKE
-#define SNAKE
+#ifndef GO_SNAKE
+#define GO_SNAKE
 
 /*
 
@@ -50,7 +50,7 @@ class Snake{
   std::vector<Position> occupies;
   std::vector<Position> liberties;
 public:
-  explicit Snake(std::vector<Position> pp, std::vector<Position> oo);
+  explicit Snake(std::vector<Position> , std::vector<Position> );
   std::vector<Position> getOccupies();
   std::vector<Position> getLiberty();
 };

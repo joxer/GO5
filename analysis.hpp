@@ -1,6 +1,6 @@
 // data: venerdì, ottobre 22 2010
-#ifndef ANALYSIS_HPP
-#define ANALYSIS_HPP
+#ifndef GO_ANALYSIS_HPP
+#define GO_ANALYSIS_HPP
 
 #endif
 

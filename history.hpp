@@ -1,7 +1,7 @@
 #include <vector>
 
-#ifndef HISTORY_CPP
-#define HISTORY_CPP
+#ifndef GO_HISTORY_CPP
+#define GO_HISTORY_CPP
 #include "action.hpp"
 
 /*
@@ -15,8 +15,8 @@ class History{
   std::vector<Action> actions;
 public:
   History();
-  void addAction(Action a);
-  void addAction(int x, int y, int color);
+  void addAction(Action);
+  void addAction(int, int, int);
 
   std::vector<Action> getActions();
   Action getLastAction();

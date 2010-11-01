@@ -3,8 +3,8 @@
 #include "exception.hpp"
 #include "utils.hpp"
 #include <list>
-#ifndef FUNCTOR_HPP
-#define FUNCTOR_HPP
+#ifndef GO_FUNCTOR_HPP
+#define GO_FUNCTOR_HPP
 
 /*
 
@@ -34,7 +34,7 @@ class Functor{
   public:
     FunctorList(){};
     virtual ~FunctorList();
-    virtual void setNext(Functor* next);
+    virtual void setNext(Functor*);
     virtual Functor* getFunctor() const;
     virtual void apply_list(GameWrapper*);
   };

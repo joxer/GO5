@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
-#ifndef LOWLEVELBOARD_HPP
-#define LOWLEVELBOARD_HPP
+#ifndef GO_LOWLEVELBOARD_HPP
+#define GO_LOWLEVELBOARD_HPP
 
 /*
 
@@ -20,8 +20,8 @@ public:
   ~LowLevelBoard();
   void printRawBoard();
   void printBoard();
-  void putStone(int x, int y, int color);
-  int getStone(int x, int y);
+  void putStone(int, int, int);
+  int getStone(int, int);
   int** getBoard();
   void copyBoard(LowLevelBoard*);
 };

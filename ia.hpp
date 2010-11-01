@@ -5,8 +5,8 @@
 #include <utility>
 #include <algorithm>
 #include "analysis.hpp"
-#ifndef IA_HPP
-#define IA_HPP
+#ifndef GO_IA_HPP
+#define GO_IA_HPP
 class IA{
   int color;
  
@@ -117,7 +117,7 @@ public:
 	  std::cout << "x: " << i << " y: " << j<< std::endl;
 	  std::cout << "color: " << tmp[i][j] << std::endl;
 #endif
-	  Go_Analysis::under_attack_group(bb.getLowLevelBoard(), tmp[i][j],i,j);
+	  std::vector< std::vector < Position > > result_positions = Go_Analysis::under_attack_group(bb.getLowLevelBoard(), tmp[i][j],i,j);
 	  std::vector<Position> queue, liberties;
 
 	  int lib = 0;
@@ -148,10 +148,11 @@ public:
 #endif
 
 	    if(x > 0){
-	      std::cout << "x>0" << std::endl;
+	   
 #ifdef DEBUG
-	      if(tmp[x-1][y] == current_color){
+	      std::cout << "x>0" << std::endl;
 #endif
+	      if(tmp[x-1][y] == current_color){
 		queue.push_back(Position(x-1,y,tmp[x-1][y]));
 		
 	      }
@@ -176,7 +177,7 @@ public:
 	      }
 	    
 	    if(y < 8)
-	   
+	      
 	      if(tmp[x][y+1] == current_color){
 #ifdef DEBUG
 		std::cout << "y<8"  << std::endl;
@@ -189,6 +190,7 @@ public:
     }
   }
 
+  
   
 };
   

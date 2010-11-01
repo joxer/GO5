@@ -1,8 +1,8 @@
 #include "board.hpp"
 #include "action.hpp"
 #include <vector>
-#ifndef  UTILS_HPP
-#define UTILS_HPP
+#ifndef GO_UTILS_HPP
+#define GO_UTILS_HPP
 
 
 template<class T> class guard{ 

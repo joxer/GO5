@@ -8,14 +8,16 @@ Board rappresentantion
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
-#ifndef BOARD_HPP
-#define BOARD_HPP
+#include <utility>
+
+#ifndef GO_BOARD_HPP
+#define GO_BOARD_HPP
 #include "action.hpp"
 #include "lowlevelboard.hpp"
 #include "history.hpp"
 #include "functor.hpp"
 #include "utils.hpp"
-#include <utility>
+
 
 /*
 
@@ -34,12 +36,12 @@ public:
   Board();
   ~Board();
   void printBoard();
-  int getStone(int x,int y);
+  int getStone(int, int);
   void finalScore();
   LowLevelBoard* getInfluenceMap();
-  void putStone(Action &ac);
-  void putStone(int x, int y, int color);
-  void removeStone(int x,int y);
+  void putStone( Action&);
+  void putStone(int, int, int);
+  void removeStone(int,int);
   LowLevelBoard* getLowLevelBoard();
 };
 #endif
